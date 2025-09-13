@@ -1,0 +1,140 @@
+{% extends "layout.html"%}
+
+{% block body %}
+
+<style>
+    /* ===== Container ===== */
+    .container {
+        width: 95%; /* ขยายตามหน้าจอ */
+        max-width: 1200px; /* กำหนดขนาดสูงสุดไม่ให้กว้างเกินไป */
+        margin: 2rem auto;
+        padding: 1.5rem 2rem; /* เพิ่ม padding ซ้ายขวา */
+        background: #fff8fc; /* พาสเทลชมพูอ่อน */
+        border-radius: 20px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+        font-family: 'Kanit', 'Poppins', sans-serif;
+        color: #444;
+    }
+
+    /* ===== Table ===== */
+    table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 8px; /* เว้นระยะห่างระหว่างแถว */
+        font-size: 0.95rem;
+    }
+
+    thead th {
+        background: #ff9ecb; /* พาสเทลชมพูสดใส */
+        color: #fff;
+        border-radius: 12px;
+        padding: 12px 0;
+        font-weight: 500;
+        text-align: center;
+    }
+
+    tbody td {
+        background: transparent; /* เอาสีออก */
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    /* ===== Badge ===== */
+    .badge {
+        font-size: 0.85rem;
+        padding: 4px 8px;
+        border-radius: 12px;
+    }
+
+    .bg-success {
+        background-color: #a0e7a0;
+        color: #fff;
+    }
+
+    .bg-danger {
+        background-color: #ff8a8a;
+        color: #fff;
+    }
+
+    /* ===== Buttons ===== */
+    .btn {
+        border-radius: 12px;
+        padding: 6px 14px;
+        font-size: 0.9rem;
+        transition: all 0.2s ease;
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn-danger {
+        background-color: #ff8a8a;
+        color: #fff;
+    }
+
+    .btn-danger:hover {
+        background-color: #ff6b6b;
+    }
+
+    .btn-warning {
+        background-color: #ffd86f;
+        color: #444;
+    }
+
+    .btn-warning:hover {
+        background-color: #ffcc33;
+    }
+
+    /* ===== Alert ===== */
+    .alert {
+        border-radius: 20px;
+        text-align: center;
+        background: #ffe6f0;
+        color: #d6336c;
+        font-weight: 600;
+        padding: 1rem;
+        margin-top: 1rem;
+    }
+</style>
+
+<div class="container">
+    {% if statements %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ลำดับ</th>
+                <th>ธุรกรรม</th>
+                <th>จำนวนเงิน</th>
+                <th>หมวดหมู่</th>
+                <th>วันที่ทำรายการ</th>
+                <th>ลบข้อมูล</th>
+                <th>แก้ไขข้อมูล</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in statements %}
+            <tr>
+                <td>{{item.id}}</td>
+                <td><strong>{{item.name}}</strong></td>
+                <td>{{item.amount | currencyFormat}} บาท</td>
+                <td>
+                    {% if item.catagory == "รายรับ" %}
+                        <span class="badge bg-success">{{item.catagory}}</span>
+                    {% else %}
+                        <span class="badge bg-danger">{{item.catagory}}</span>
+                    {% endif %}
+                </td>
+                <td>{{item.date}}</td>
+                <td><a href="/delete/{{item.id}}" class="btn btn-danger">ลบ</a></td>
+                <td><a href="/edit/{{item.id}}" class="btn btn-warning">แก้ไข</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="alert" role="alert">
+        ไม่พบข้อมูล
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}3

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Fonts: Kanit -->
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* ================= Global ================= */
+        body {
+            font-family: 'Kanit', sans-serif !important;
+            background: #fffdf8; /* สีครีมอ่อน */
+            color: #c40f0f;
+        }
+
+        /* ================= Navbar ================= */
+        .navbar {
+            background: #1cce10; /* พาสเทลชมพูอ่อน */
+            box-shadow: 0 8px 8px rgba(0,0,0,0.05);
+            border-radius: 0 0 12px 12px;
+        }
+
+        .navbar-brand {
+            font-family: 'Kanit', sans-serif !important;
+            font-weight: 600;
+            color: #6b4c5a !important;
+            font-size: 1.25rem;
+        }
+
+        .nav-link {
+            font-family: 'Kanit', sans-serif !important;
+            color: #191eb4 !important;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #1e24d1 !important;
+            transform: scale(1.05);
+        }
+
+        .dropdown-menu {
+            border-radius: 15px;
+            border: none;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+            background-color: #b62238;
+        }
+
+        .dropdown-item {
+            font-family: 'Kanit', sans-serif !important;
+            transition: all 0.2s ease;
+            color: #6b4c5a;
+        }
+
+        .dropdown-item:hover {
+            background-color: #eb5873;
+            color: #fff;
+        }
+
+        .btn-outline-success {
+            font-family: 'Kanit', sans-serif !important;
+            border-color: #6dd71c;
+            color: #6b4c5a;
+            transition: all 0.3s ease;
+            border-radius: 20px;
+        }
+
+        .btn-outline-success:hover {
+            background-color: #4b2eed;
+            color: #fff;
+            border-color: #14b42c;
+        }
+
+        .form-control {
+            font-family: 'Kanit', sans-serif !important;
+            border-radius: 20px;
+            border: 1px solid #ffccd9;
+        }
+
+        /* ================= Container ================= */
+        .container {
+            padding: 2rem;
+        }
+
+        /* ================= Responsive small tweaks ================= */
+        @media (max-width: 575px) {
+            .navbar-brand {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark mb-3">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/showData">ระบบจัดการข้อมูลบัญชีรายรับ-รายจ่าย</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link" href="/">เพิ่มข้อมูลธุรกรรม</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/showData">ดูข้อมูลทั้งหมด</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    หมวดหมู่
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#">รายรับ</a></li>
+                    <li><a class="dropdown-item" href="#">รายจ่าย</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">ทั้งหมด</a></li>
+                  </ul>
+                </li>
+              </ul>
+
+              <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="ค้นหา" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">ค้นหา</button>
+              </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        {% block body %}
+        {% endblock %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
